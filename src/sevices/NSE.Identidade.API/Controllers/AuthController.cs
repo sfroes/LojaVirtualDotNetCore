@@ -47,7 +47,7 @@ namespace NSE.Identidade.API.Controllers
             if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(user, false);
-                return Ok();
+                return Ok(await GerarJwt(usuarioRegistro.Email));
             }
 
             return BadRequest();
@@ -62,7 +62,7 @@ namespace NSE.Identidade.API.Controllers
 
             if (result.Succeeded)
             {
-                return Ok();
+                return Ok(await GerarJwt(usuarioLogin.Email));
             }
 
             return BadRequest();
