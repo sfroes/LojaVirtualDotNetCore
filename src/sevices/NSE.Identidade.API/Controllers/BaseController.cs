@@ -10,7 +10,8 @@ namespace NSE.Identidade.API.Controllers
     public abstract class BaseController : Controller
     {
         protected List<string> Erros = new List<string>();
-        public ActionResult CustomResponse(object result = null)
+
+        protected ActionResult CustomResponse(object result = null)
         {
 
             if (OperacaoValida())
