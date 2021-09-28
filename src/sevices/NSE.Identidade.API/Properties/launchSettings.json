@@ -33,6 +33,7 @@
         "ASPNETCORE_ENVIRONMENT": "Production"
       }
     },
+    //Proprio processo do aspnet - command terminal
     "SelfHosting - Development": {
       "commandName": "Project",
       "launchBrowser": true,
