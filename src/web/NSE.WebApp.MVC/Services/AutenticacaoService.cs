@@ -19,7 +19,9 @@ namespace NSE.WebApp.MVC.Services
         public async Task<string> Login(UsuarioLogin usuarioLogin)
         {
             var loginContente = new StringContent(JsonSerializer.Serialize(usuarioLogin),Encoding.UTF8, "application/json");
-            var response = await _httpClient.PostAsync("https://localhost:44396/api/identidade/auttenticar", loginContente);
+            var response = await _httpClient.PostAsync("https://localhost:44332/api/identidade/autenticar", loginContente);
+
+            var teste = await response.Content.ReadAsStringAsync();
 
             return JsonSerializer.Deserialize<string>(await response.Content.ReadAsStringAsync());
         }
@@ -27,7 +29,7 @@ namespace NSE.WebApp.MVC.Services
         public async Task<string> Registro(UsuarioRegistro usuarioRegistro)
         {
             var registroContente = new StringContent(JsonSerializer.Serialize(usuarioRegistro), Encoding.UTF8, "application/json");
-            var response = await _httpClient.PostAsync("https://localhost:44396/api/identidade/nova-conta", registroContente);
+            var response = await _httpClient.PostAsync("https://localhost:44332/api/identidade/nova-conta", registroContente);
 
             return JsonSerializer.Deserialize<string>(await response.Content.ReadAsStringAsync());
         }
