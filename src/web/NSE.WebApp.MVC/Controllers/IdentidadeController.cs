@@ -31,7 +31,7 @@ namespace NSE.WebApp.MVC.Controllers
             }
 
             // Api - Registro
-            string resposta = await _autentiicacaoService.Registro(usuarioRegistro);
+            UsuarioRespostaLogin resposta = await _autentiicacaoService.Registro(usuarioRegistro);
 
 
             if (false) return View(usuarioRegistro);
@@ -59,7 +59,7 @@ namespace NSE.WebApp.MVC.Controllers
             }
 
             // Api - Login
-            string resposta = await _autentiicacaoService.Login(usuarioLogin);
+            UsuarioRespostaLogin resposta = await _autentiicacaoService.Login(usuarioLogin);
 
             if (false) return View(usuarioLogin);
 
