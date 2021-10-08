@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using NSE.WebApp.MVC.Models.Response;
 
 namespace NSE.WebApp.MVC.Models.Usuario
 {
@@ -10,5 +7,6 @@ namespace NSE.WebApp.MVC.Models.Usuario
         public string AccessToken { get; set; }
         public double ExpiresIn { get; set; }
         public UsuarioToken UsuarioToken { get; set; }
+        public ResponseResult ResponseResult { get; set; }
     }
 }
