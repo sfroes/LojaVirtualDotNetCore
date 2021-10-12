@@ -10,6 +10,11 @@ namespace NSE.WebApp.MVC.Controllers
         {
             if(responseResult != null && responseResult.Errors.Mensagens.Any())
             {
+                foreach (var mensagemErro in responseResult.Errors.Mensagens)
+                {
+                    ModelState.AddModelError(string.Empty, mensagemErro);
+                }
+
                 return true;
             }
 
