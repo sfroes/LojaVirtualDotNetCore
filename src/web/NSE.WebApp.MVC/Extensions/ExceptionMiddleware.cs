@@ -27,9 +27,9 @@ namespace NSE.WebApp.MVC.Extensions
 
         private static void HandleRequestExceptionAsync(HttpContext httpContext, CustomHttpRequestException ex)
         {
-            if(ex.StatusCode == HttpStatusCode.Unauthorized)
+            if (ex.StatusCode == HttpStatusCode.Unauthorized)
             {
-                httpContext.Response.Redirect("/login");
+                httpContext.Response.Redirect($"/login/?ReturnUrl={httpContext.Request.Path}");
                 return;
             }
 
