@@ -1,5 +1,8 @@
-﻿using NSE.WebApp.MVC.Models.Response;
+﻿using Microsoft.Extensions.Options;
+using NSE.WebApp.MVC.Extensions;
+using NSE.WebApp.MVC.Models.Response;
 using NSE.WebApp.MVC.Models.Usuario;
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -9,15 +12,17 @@ namespace NSE.WebApp.MVC.Services
     {
         private readonly HttpClient _httpClient;
 
-        public AutenticacaoService(HttpClient httpClient)
+        public AutenticacaoService(HttpClient httpClient,
+                                   IOptions<AppSettings> appSettings)
         {
+            httpClient.BaseAddress = new Uri(appSettings.Value.AutenticacaoUrl);
             _httpClient = httpClient;
         }
 
         public async Task<UsuarioRespostaLogin> Login(UsuarioLogin usuarioLogin)
         {
             var loginContente = SerializarConteudo(usuarioLogin);
-            var response = await _httpClient.PostAsync("https://localhost:44332/api/identidade/autenticar", loginContente);
+            var response = await _httpClient.PostAsync("/api/identidade/autenticar", loginContente);
 
             if (!TratarErroResponse(response))
             {
@@ -33,7 +38,7 @@ namespace NSE.WebApp.MVC.Services
         public async Task<UsuarioRespostaLogin> Registro(UsuarioRegistro usuarioRegistro)
         {
             var registroContente = SerializarConteudo(usuarioRegistro);
-            var response = await _httpClient.PostAsync("https://localhost:44332/api/identidade/nova-conta", registroContente);
+            var response = await _httpClient.PostAsync("/api/identidade/nova-conta", registroContente);
 
             if (!TratarErroResponse(response))
             {

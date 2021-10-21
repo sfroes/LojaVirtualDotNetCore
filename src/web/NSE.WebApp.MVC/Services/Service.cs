@@ -31,7 +31,7 @@ namespace NSE.WebApp.MVC.Services
                 PropertyNameCaseInsensitive = true
             };
 
-            return JsonSerializer.Deserialize<T>(await httpResponseMessage.Content.ReadAsStringAsync(), options)
+            return JsonSerializer.Deserialize<T>(await httpResponseMessage.Content.ReadAsStringAsync(), options);
         }
 
         protected bool TratarErroResponse(HttpResponseMessage response)
